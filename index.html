@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAIKAN PROJECT</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<div id="container" class="a" ></div>
+<body>
+    <script>
+        fetch("https://restcountries.com/v3.1/all")
+        .then(function (data){
+            return data.json();})
+            .then(function (data1) {
+                console.log(data1)
+
+                var container=document.getElementById("container")
+                data1.forEach(element => {
+                    var card=document.createElement("div")
+                    var line1=document.createElement("div")
+                    line1.setAttribute("class", "flag")
+                    var line2=document.createElement("div")
+                    line2.setAttribute("class", "country")
+                    var line3=document.createElement("div")
+                    line3.setAttribute("class", "code")
+                    var pic =element.flags.png
+                    var image=document.createElement("img")
+                    
+                    image.setAttribute("src",pic.toString())
+                    image.setAttribute("class","flag1")
+                    line1.appendChild(image)
+                    line2.innerHTML="NAME : "+element.name.common
+                    line3.innerHTML="CODE : " +element.idd.root
+
+                    card.setAttribute("class", "democlass")
+                    container.appendChild(card)
+                    card.appendChild(line1)
+                    card.appendChild(line2)
+                    card.appendChild(line3)
+                    
+                });
+            })
+            .catch(function (a) {
+                console.log("err")
+                
+            })
+        </script>
+</body>
+</html>
